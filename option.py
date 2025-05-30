@@ -2,6 +2,12 @@
 # req["property"].FUNCTION(req["type"], req["items"])
 
 class Option():
+    """
+    Modules Extending Option REQUIRE the following:
+        .mod_txt(type, items) -> ""
+        .check_req(type, items) -> true,_ OR false,reason
+        .process(type, items) -> execute internal process
+    """
 
     def create_req_list(self, namespace):
         """

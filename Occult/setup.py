@@ -1,6 +1,5 @@
-from Player import Player
 import inventory
+import sound
 
-p = Player()
-p.inv = inventory.Inventory()
-i = p.inv
+i = inventory.Inventory()
+s = sound.Sound()

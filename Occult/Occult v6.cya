@@ -1,6 +1,6 @@
 1
 "You awake in your bedroom."
-> Go Downstairs -> 2 [i.need slippers, socks]
+> Go Downstairs -> 2 [i.need slippers, socks][s.play ./sounds/world/door.wav]
 > Scream -> 3
 > Try to eat your laptop -> 4
 > Put on slippers -> 5 [i.add slippers]
@@ -17,5 +17,5 @@
 
 5
 "You put on your slippers."
-> Go Downstairs -> 2 [i.need slippers][i.remove slippers]
+> Go Downstairs -> 2 [i.need slippers][i.remove slippers][s.play ./Occult/sounds/battle/swing3.wav][s.play ./Occult/sounds/world/door.wav]
 > Take off slippers -> 1 [i.remove slippers]
