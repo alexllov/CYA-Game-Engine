@@ -1,5 +1,9 @@
 
 class Inventory():
+    """
+    Provides storage for the Player through a dict.
+    Options module.
+    """
 
     def __init__(self):
         self.inv = {}
@@ -8,6 +12,9 @@ class Inventory():
         return f"{self.inv}"
 
     def process(self, type, items):
+        """
+        Processes the action req upon taking linked option.
+        """
         match type:
             case "need":
                 pass
@@ -21,6 +28,9 @@ class Inventory():
                 pass
     
     def mod_txt(self, type, items):
+        """
+        Modifies base option text based on action impact.
+        """
         match type:
             case "need":
                 needs = ", ".join(items)
@@ -37,12 +47,18 @@ class Inventory():
                 ValueError
     
     def add(self, item):
+        """
+        Adds item to inventory.
+        """
         if item in self.inv:
             self.inv[item] += 1
         else:
             self.inv[item] = 1
 
     def remove(self, item):
+        """
+        Removes item from inventory.
+        """
         if item in self.inv:
             self.inv[item] -= 1
         else:
@@ -51,6 +67,10 @@ class Inventory():
             del self.inv[item]
     
     def check_items(self, reqs):
+        """
+        Check if inventory contains the required items.
+        Returns (True, _) OR (False, message explaining missing items)
+        """
         failures = []
         for item in reqs:
             if item not in self.inv:
@@ -65,14 +85,18 @@ class Inventory():
         return (bool, msg)
 
     def check_req(self, type, reqs):
+        """
+        Checks if inventory matches stated requirement
+        (contains the required items).
+        """
         match type:
             case "add":
                 return True
             case "need":
                 response = self.check_items(reqs)
-                return True
+                return response
             case "remove":
                 response = self.check_items(reqs)
-                return True
+                return response
             case _:
                 ValueError

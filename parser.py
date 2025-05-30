@@ -3,7 +3,10 @@ from tokenizer import read_game_file
 
 def parse_option(line):
     """
-    Process option line.
+    Process option line, produces 3 parts: text, target, actions:
+        text: the plaintext of the option presented.
+        target: destination upon selecting option.
+        actions: game events triggered by selecting option.
     """
     # Pull off text
     text, rest = line.split("->")
@@ -105,6 +108,9 @@ def parse_lines(lines):
 
 
 def run_setup(filepath):
+    """
+    Constructs namespace store to track values & modules used within game code.
+    """
     with open(filepath, "r") as file:
         code = file.read()
     namespace = {}

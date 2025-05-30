@@ -65,14 +65,14 @@ class Option():
                 msg = response[1]
             else:
                 result = response
+
             if not result:
-                failures.append(req)
+                failures.append(msg)
 
         # Needs rewrite to show appropriate err msgs.
         if failures:
             flag = False
-            plaintext = ", ".join(failures)
-            msg = f"You do not have the required: {plaintext}"
+            msg = ", ".join(failures)
         else:
             flag = True
             msg = ""

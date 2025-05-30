@@ -18,4 +18,4 @@
 5
 "You put on your slippers."
 > Go Downstairs -> 2 [i.need slippers][i.remove slippers]
-> Take off slippers -> 6 [i.remove slippers]
+> Take off slippers -> 1 [i.remove slippers]

@@ -1,4 +1,4 @@
-from _parser import parse_lines, run_setup
+from parser import parse_lines, run_setup
 from tokenizer import read_game_file
 from option import Option
 
@@ -19,10 +19,13 @@ def run(data, namespace, start=1):
         # add "x for options menu" to end
         # remember to mod choice <= len to account for +1
         options = []
+        display_options = []
         for i, (text, target, actions) in enumerate(scene["options"]):
             option = Option(text, target, actions, namespace)
-            print(f"{i+1}. {option.text}")
+            display_options.append(f"{i+1}. {option.text}\n")
             options.append(option)
+        
+        print("".join(display_options))
 
         while True:
             try:
