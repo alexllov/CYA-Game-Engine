@@ -3,6 +3,10 @@ from tokenizer import read_game_file
 from option import Option
 
 def run(data, namespace, start=1):
+    if "start" in namespace:
+        start = namespace["start"]
+    else:
+        start = 1
     current_scene = start
     
     while True:

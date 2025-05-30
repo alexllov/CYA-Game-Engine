@@ -1,6 +1,8 @@
 # Holy Grail
 # req["property"].FUNCTION(req["type"], req["items"])
 
+import base
+
 class Option():
     """
     Modules Extending Option REQUIRE the following:
@@ -22,14 +24,24 @@ class Option():
             # Split action into property its from & type
             # eg, i (player inv): add
             #     stat.str: ...
-            property, action_type = action[0].split(".")
+
+            # Search for module: filters base vs modules
+            if "." in action[0]:
+                property, action_type = action[0].split(".")
+            else: 
+                property = "base"
+                action_type = action[0]
             property = namespace[property]
+
             items = []
-            for item in action[1]:
-                items.append(item)
+            # Collate items if present: mainly filtering base vs modules.
+            if len(action) > 1:
+                for item in action[1]:
+                    items.append(item)
             reqs.append({"property": property,
                          "type": action_type,
                          "items": items})
+        print(reqs)
         return reqs
 
     def mod_text_given_actions(self, text, actions, namespace):
@@ -48,7 +60,9 @@ class Option():
         # Should be fine to do this as namespace shouldn't change after setup.
         # IF TRUE, then ++ self.reqs to streamline to 1 func call.
         self.namespace = namespace
-        self.target = int(target)
+        if target.isdigit():
+            target = int(target)
+        self.target = target
         self.actions = actions
         self.text = self.mod_text_given_actions(text, actions, namespace)
     
@@ -59,21 +73,15 @@ class Option():
         """
         Applies generic '.check_req' func across
         all reqs to ensure they're fulfilled.
-        Returns Flag:bool & msg (explaining failure if necessary)
+        Returns (flag:bool & msg) (explaining failure if necessary)
         """
         reqs = self.create_req_list(namespace)  
         # Check all reqs fulfilled.
-        failures, results, msgs = [],[],[]
+        failures = []
         for req in reqs:
             response = req["property"].check_req(req["type"], req["items"])
-            if type(response) != bool:
-                result = response[0]
-                msg = response[1]
-            else:
-                result = response
-
-            if not result:
-                failures.append(msg)
+            if not response[0]:
+                failures.append(response[1])
 
         # Needs rewrite to show appropriate err msgs.
         if failures:

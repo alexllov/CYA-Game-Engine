@@ -2,6 +2,11 @@
 import winsound
 
 class Sound():
+    """
+    Note instances of [sound.play file] can only take a single sound file.
+    To add multiple sound effects to one trigger,
+    use multiple [sound.play] tags.
+    """
     def __init__(self):
         ...
     
@@ -15,7 +20,7 @@ class Sound():
         return ""
     
     def check_req(self, text, reqs):
-        return True
+        return (True, "")
 
     def process(self, type, items):
         for sound in items:

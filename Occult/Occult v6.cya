@@ -1,3 +1,23 @@
+MENU
+> Contents -> CON
+> Save Game -> MENU [save]
+> Inventory -> INV
+> Back -> BACK [back]
+
+INV
+"Your Inventory:" [i.menu n]
+> Back -> MENU
+
+CON
+"Contents" [base.contents n]
+
+INTRO
+"Welcome to Occult. This is a tester game I have made."
+> start -> 1
+
+RULES
+"Well, there aren't many rules really."
+
 1
 "You awake in your bedroom."
 > Go Downstairs -> 2 [i.need slippers, socks][s.play ./sounds/world/door.wav]

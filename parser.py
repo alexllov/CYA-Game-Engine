@@ -1,6 +1,5 @@
 from tokenizer import read_game_file
 
-
 def parse_option(line):
     """
     Process option line, produces 3 parts: text, target, actions:
@@ -14,11 +13,9 @@ def parse_option(line):
 
     # Separate Target from reqs
     rest = rest.strip()
-    try:
-        target, flags = rest.split(" ",1)
-    except:
-        target = rest.strip()
-        flags = False
+    parts = rest.split(" ",1)
+    target = parts[0]
+    flags = parts[1] if len(parts) > 1 else False
     actions = []
 
     if flags:
@@ -33,7 +30,9 @@ def parse_option(line):
 
         # Process each flag
         for flag in flags:
-            action, items = flag.split(" ", 1)
+            parts = flag.split(" ", 1)
+            action = parts[0]
+            items = parts[1] if len(parts) > 1 else ""
             # Split list of items, strip to clean, -> clean list of items.
             items = list(
                 map(
@@ -93,8 +92,17 @@ def parse_lines(lines):
             text_lines.append(line)
 
         # Here is where lang instructions will be gathered.
+        # Hotwiring this here to collect non INT IDs
         else:
-            pass
+            if current_scene is not None:
+                data[current_scene] = {
+                    "text": "\n".join(text_lines),
+                    "options": options
+                }
+            current_scene = line
+            text_lines = []
+            options = []
+
 
     if current_scene is not None:
         data[current_scene] = {
@@ -116,6 +124,10 @@ def run_setup(filepath):
     namespace = {}
     exec(code, namespace)
     del namespace["__builtins__"]
+    """
+    # base is protected name for core funcs.
+    #namespace["base"] = Base()
+    """
     return namespace
 
 

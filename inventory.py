@@ -24,6 +24,8 @@ class Inventory():
             case "remove":
                 for item in items:
                     self.remove(item)
+            case "menu":
+                self.menu()
             case _:
                 pass
     
@@ -76,13 +78,13 @@ class Inventory():
             if item not in self.inv:
                 failures.append(item)
         if failures:
-            bool = False
+            flag = False
             plaintext = ", ".join(failures)
             msg = f"You do not have the required: {plaintext}"
         else:
-            bool = True
+            flag = True
             msg = ""
-        return (bool, msg)
+        return (flag, msg)
 
     def check_req(self, type, reqs):
         """
@@ -91,7 +93,7 @@ class Inventory():
         """
         match type:
             case "add":
-                return True
+                return (True, "")
             case "need":
                 response = self.check_items(reqs)
                 return response
@@ -100,3 +102,10 @@ class Inventory():
                 return response
             case _:
                 ValueError
+    
+    def menu(self):
+        """
+        TODO
+        Display Inventory for Menu. Edit this in future.
+        """
+        print(self)
