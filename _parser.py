@@ -46,7 +46,8 @@ def parse_lines(lines):
     """
     Processes lines, builds JSON style obj of scenes with text and options.
     """
-    scenes = {}
+    modules = {}
+    data = {}
     current_scene = None
     text_lines = []
     options = []
@@ -54,12 +55,24 @@ def parse_lines(lines):
     for line in lines:
         line = line.strip()
 
+        # Skip whitespace & comments.
         if line == "" or line.startswith("#"):
             continue
 
+        # Pull out imports to dict.
+        elif line.startswith("import"):
+            line = line.replace("import", "", 1).strip()
+            if " as " in line:
+                module, pseudo = line.split(" as ")
+                modules[pseudo] = module
+            else:
+                module = line
+                modules[module] = module
+
+        # ID the start of scenes.
         elif line.isdigit():
             if current_scene is not None:
-                scenes[current_scene] = {
+                data[current_scene] = {
                     "text": "\n".join(text_lines),
                     "options": options
                 }
@@ -67,22 +80,42 @@ def parse_lines(lines):
             text_lines = []
             options = []
 
+        # ID options.
         elif line.startswith(">"):
             option = parse_option(line)
             options.append(option)
         
-        else:
+        # Grab texts.
+        elif line.startswith('"') or line.startswith("'"):
             text_lines.append(line)
 
+        # Here is where lang instructions will be gathered.
+        else:
+            pass
+
     if current_scene is not None:
-        scenes[current_scene] = {
+        data[current_scene] = {
             "text": "\n".join(text_lines),
             "options": options
         }
-    return scenes
+    
+    data["modules"] = modules
+
+    return data
+
+
+def run_setup(filepath):
+    with open(filepath, "r") as file:
+        code = file.read()
+    namespace = {}
+    exec(code, namespace)
+    del namespace["__builtins__"]
+    return namespace
 
 
 if __name__ == "__main__":
-    lines = read_game_file("./Occult v4.cya")
+    namespace = run_setup("./Occult/setup.py")
+    print(namespace)
+    lines = read_game_file("./Occult/Occult v6.cya")
     scenes = parse_lines(lines)
     print(scenes)

@@ -1,0 +1,56 @@
+
+"**PRELUDE**"
+"In the Old World, the War of the Four Kingdoms is over, but there is still much to be done. Some of the evil generals and their minions escaped and have gone to ground in the wilderness beyond Gallantaria, the area known as the Badlands. One above all has eluded all efforts to track him down and bring him to justice. Karam Gruul, the terrifying Inquisitor General, was thought dead. Howeverm this was merely a ruse to allow him to escape."
+"Now Gruul has reappeared and is hiding out somewhere in the lawless city of Blackhaven. Someone is needed to find his whereabouts and bring him to justice... someone adept at more than just swordplay, someone with an inquisitive mind and a nose for danger. In short, a Bounty Hunter - a Bounty Hunter like YOU."
+"The perils which await you are many and deadly; this time, even your skulls may not overcome them. Gruul is evil beyond comprehension, and he will not give up without a fight to the death. Is your war really over - or has it only just begun?"
+"Two dice, a pencil and an eraser are all you need to embark upon your most challenging adventure yet, which comes complete with its own elaborate combat system and a score sheet to record your progress."
+"Many spine-chilling dangers lie aheadand your success is by no means certain. Horrifying enemies are ranged against you and it's up to YOU to decide which route to follow, which dangers to risk and which foes to fight."
+
+"**INTRODUCTION**"
+"Exploring the Lacyinthian Caves, striking beyond Orchelm enemy-lines, rediscovering the Forgotten Temple of Daemos, defying the monstrous Vampire Lords of Vannan – most adventurers would be proud to have achieved but one of these feats, but you have done them all and many more besides. What is more, all these death-defying exploits were accomplished as part of your apprenticeship! For you have joined the few whose very lives are a byword for danger: you have become a Bounty Hunter."
+"As a Bounty Hunter, you are a grim, experienced and fearless survivor who lives off the rewards offered by the civilized nations of the Old World for the capture of wanted criminals. Unlike most of your sort, who are ruthless, money-grubbing scum, you don't waste your time arresting petty thieves, however. You strive for the return of justice to the Old World: you look to hunt down the handful of arch-villains who you know are behind the many foul wars and cruel mishaps that have recently threatened to bring your native land of Gallantaria to her knees. You will not rest until you have uncovered and arrested each and every one of these evil fiends."
+"Before embarking on your latest and most hazardous mission, you must work out your own strengthe and weaknesses; use the Adventure Sheet on pages 18-19 to record your attribute scores, as well as all the other details of your adventure. Since you are unlikely to succeed at the first attempt, it would be sensible to make copies of the Adventure Sheet for later forays into this adventure. As well as a copy of the Adventure Sheet, you will also need two dice, a pencil, and an eraser"
+
+"**Skill, Stamina and Luck**"
+import stats
+"Roll one die. Add 6 to the number rolled and enter the total in the SKILL box on the Adventure Sheet."
+"Roll two dice, Add 12 to the number and enter the total in the STAMINA box."
+"Roll one die, add 6 and enter the total in the LUCK box."
+"These are the Initial scores for your three main attributes. For reasons that will be explained below, all these scores will change during the adventure. You must keep an accurate record of them, and for this reason you are advised to wirte small in the boxes or to keep an eraser handy. But never rub out your Initial scores. Although you may be awarded additional SKILL, STAMINA, and LUCK points, their totals may never exceed their Initial scores, except on some very rare occasions when the text specifically tells you so."
+"Yout SKILL score reflects your expertise in combat, your dexterity an your agility. Your STAMINA score reflects how healthy and physically fit you are. Your LUCK score indicates how lucky you are. In all these cases, the higher the score, the better!"
+
+"**Battles**"
+"During your adventure you will often encounter hostile creatures which will attack you; on other occasions, you yourself may choose to draw your sword against an enemy you chance across. In some situations you may be given a special option allowing you to deal with the encounter in an unusual manner; but in most cases you will have to resolve battles as decribed below."
+"You will be told your opponent's SKILL and STAMINA scores in the paragraph where you first meet him, her, or it; enter these details in the first vacant Encounter Box on your Adventure Sheet. You should also make a note of any special abilities or instructions which are unique to that particular opponent. Then follow this sequence:"
+"1. Roll both dce for your opponent. Add its SKILL score to the total rolled, to find its Attack Strength."
+"2. Roll both dice for yourself, then add you current SKILL score to find your Attack Strength."
+"3. If your Attack Strength is higher than your opponent's, you have wounded it: proceed to step 4. If your opponent's Attack Strength is higher than yours, it has wounded you: proceed to step 5. If both Attack Strength totals are the same, you have avoided or parried each other's blows: start a new Attack Round from Step 1, above."
+"4. You have wounded your opponent: subtract 2 points from its STAMINA score. You may use LUCK here to do additional damage to it (see below), Now proceed to step 6."
+"5. Your opponent has wounded you: subtract 2 points from your STAMINA score. You may use LUCK here to minimize the amount of STAMINA lost (see below)."
+"6. Begin the next Attack Round, starting again at step 1. This sequence continues until the STAMINA score of either you or your opponent reaches zero, which means death. If your opponent dies, you are free to continue with your adventure. If you die, your quest has ended and you must start the adventure all over again by rolling the dice to create a new character."
+
+"**Fighting More Than One Opponent**"
+"In some situations you may find yourself facing more than one enemy. Sometimes you will treat them as a single opponent; at other times you will be able to fight each in turn; and sometimes you will have to fight them all at the same time! If they are treated as a single opponent, the combat is resolved normally. When you are instructed to fight several creatures one at a time, the combat is again resolved normally - except that, once you defeat one opponent, the next steps forward to fight you!"
+"When you find yourself under attack from more than one adversary at the same time, each will make a separate attack on you in the course of each Attack Round, but you can choose which one to fight (unless you have the Combat Special Skill - see Special Skills below). Attack your chosen target as in a normal battle. Against any additional opponents you roll for the Attack Strength of yourself and each opponent in the normal way. If your attack strength is greater than your adversary's, however, in this instance you will not inflict a wound: you can regard it as having parried an incoming blow. If your Attack Strength is lower than your enemy's, you will be wounded in the normal way."
+
+"**Luck**"
+"At various times during your adventure, either in battle or when you find yourself in another situation when you could be either Lucky or Unlucky (such eventualities are detailed in the paragraphs themselves), you may use LUCK to make the outcome more favourable. But beware! Using LUCK is a risky business and, if you are Unlucky, the results could be disastrous."
+"The procedure, called Testing your Luck, works in the following way: roll two dice. If the number rolled is equal to or less than your current LUCK score, you have been Lucky and the result will be in your favour. If the number rolled is higher than your current LUCK score, you have been Unlucky and will be penalized."
+"Each time youTest your Luck, you must subtract 1 point from your current LUCK score. Thus you will soon come to realize that, the more you rely on your LUCK, the more risky this procedure will become."
+
+"**Using Luck in Battles**"
+"In certain paragraphs you will be told to Test your Luck, and you will then find out the consequences of being Lucky or Unlucky. However, in battles, you always have the option of using your Luck, either to inflict greater damage on an opponent you have just wounded or to minimize the effects of a wound you have just received."
+"If you have just wounded an opponent, you may Test your Luck as described above. If you are Lucky, you have inflicted a severe wound; deduct 2 extra points from your opponent’s Stamina score. If you are Unlucky, however, your blow merely scratches your opponent; deduct only 1 point from your opponent’s Stamina (i.e., instead of inflicting the normal 2 points of damage, you may now score only 1)."
+"Whenever you yourself are wounded in combat, you may Test your Luck to try to minimize the wound. If you are Lucky, your opponent’s blow only grazes you; deduct only 1 point from your Stamina. If you are Unlucky, your wound is a serious one and you must deduct 1 extra Stamina point (i.e., deduct a total of 3 points from your own Stamina)."
+"Remember: you must subtract 1 point from your Luck score each time you Test your Luck, whether you are successful or not."
+
+"**More About Your Attributes**"
+"Skill"
+"Your SKILL score will not change much during the course of your adventure. Occasionally a paragraph may give instructions to increase or decrease your SKILL score, but it may not exceed its Initial value unless you are specifically instructed to the contrary. If you ever have to fight a battle with your bare hands (that is to say, you do not have a weapon to fight with), you must temporarily subtract 1 from your SKILL score for the duration of the combat."
+"At various times during your adventure you will be told to Test your Skill. The procedure for this is exactly the same as that for Testing your Luck. Roll two dice: if the number rolled is equal to or less than your current SKILL score, you have succeeded in your test and the result will go in your favour; if the number rolled is higher than your current SKILL score, you have failed the test and will have to suffer the consequences. However, unlike Testing your Luck, do not subtract 1 point from your SKILL each time you are told to Test your Skill."
+"Stamina"
+"Your STAMINA score will change a lot during your adventure. It will drop as a result of wounds gained through combat, or by falling foul of traps and pitfalls, and it will also drop after you perform any particularly arduous task. If your STAMINA score ever falls to zero, you have been killed and must start again. Brave adventurers who with to pursue their quest most roll up a new character and start all over again."
+
+
+
+

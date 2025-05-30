@@ -1,0 +1,21 @@
+1
+"You awake in your bedroom."
+> Go Downstairs -> 2 [i.need slippers, socks]
+> Scream -> 3
+> Try to eat your laptop -> 4
+> Put on slippers -> 5 [i.add slippers]
+> Take off slippers -> 3 [i.need slippers]
+
+2
+"You went downstairs."
+
+3
+"You screamed."
+
+4
+"Why would you try and eat laptop??"
+
+5
+"You put on your slippers."
+> Go Downstairs -> 2 [i.need slippers][i.remove slippers]
+> Take off slippers -> 6 [i.remove slippers]
