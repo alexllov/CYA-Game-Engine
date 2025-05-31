@@ -24,9 +24,11 @@ def select_option(data, scene, namespace, options, old_scene=""):
                 case "x":
                     old_scene = scene
                     scene = data["MENU"]
+                    # THIS ALL NEEDS TO => seperate handler func.
+                    # currently not handling properly -> passing selected on
                     options = generate_options(scene, namespace)
                     selected, indx = select_option(data, scene, namespace, options, old_scene)
-                    print("hello")
+                    print("inside x case; select_option()")
 
                     pass
                 case "s":
@@ -90,6 +92,8 @@ def main():
     namespace = run_setup(setup_filepath)
     lines = read_game_file(filename)
     data = parse_lines(lines)
+    # Graft data onto scenes s.t it has access to locs as well as namespace.
+    namespace["base"].scenes = data
     run(data, namespace)
 
 main()

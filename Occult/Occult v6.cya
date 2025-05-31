@@ -5,11 +5,11 @@ MENU
 > Back -> BACK [back]
 
 INV
-"Your Inventory:" [i.menu n]
+"Your Inventory:" [i.menu]
 > Back -> MENU
 
 CON
-"Contents" [base.contents n]
+"Contents" [contents]
 
 INTRO
 "Welcome to Occult. This is a tester game I have made."
@@ -23,6 +23,9 @@ RULES
 > Go Downstairs -> 2 [i.need slippers, socks][s.play ./sounds/world/door.wav]
 > Scream -> 3
 > Try to eat your laptop -> 4
+> Roll a dice HIGH -> 1 [d.2d6 >6]
+> Roll a dice LOW -> 1 [d.1d3 <3]
+> Roll a dice -> 1 [d.1d20]
 > Put on slippers -> 5 [i.add slippers]
 > Take off slippers -> 3 [i.need slippers]
 

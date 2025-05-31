@@ -11,11 +11,11 @@ class Inventory():
     def __str__(self):
         return f"{self.inv}"
 
-    def process(self, type, items):
+    def process(self, method, items):
         """
         Processes the action req upon taking linked option.
         """
-        match type:
+        match method:
             case "need":
                 pass
             case "add":
@@ -29,11 +29,11 @@ class Inventory():
             case _:
                 pass
     
-    def mod_txt(self, type, items):
+    def mod_txt(self, method, items):
         """
         Modifies base option text based on action impact.
         """
-        match type:
+        match method:
             case "need":
                 needs = ", ".join(items)
                 additional = f" (need {needs})"
@@ -86,12 +86,12 @@ class Inventory():
             msg = ""
         return (flag, msg)
 
-    def check_req(self, type, reqs):
+    def check_req(self, method, reqs):
         """
         Checks if inventory matches stated requirement
         (contains the required items).
         """
-        match type:
+        match method:
             case "add":
                 return (True, "")
             case "need":

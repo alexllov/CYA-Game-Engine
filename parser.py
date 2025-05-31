@@ -1,4 +1,5 @@
 from tokenizer import read_game_file
+from base import Base
 
 def parse_option(line):
     """
@@ -124,10 +125,10 @@ def run_setup(filepath):
     namespace = {}
     exec(code, namespace)
     del namespace["__builtins__"]
-    """
+    
     # base is protected name for core funcs.
-    #namespace["base"] = Base()
-    """
+    namespace["base"] = Base(namespace)
+    
     return namespace
 
 

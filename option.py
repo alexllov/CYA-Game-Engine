@@ -1,47 +1,49 @@
 # Holy Grail
-# req["property"].FUNCTION(req["type"], req["items"])
-
-import base
+# req["property"].FUNCTION(req["method"], req["items"])
 
 class Option():
     """
     Modules Extending Option REQUIRE the following:
-        .mod_txt(type, items) -> ""
-        .check_req(type, items) -> true,_ OR false,reason
-        .process(type, items) -> execute internal process
+        .mod_txt(method, items) -> ""
+        .check_req(method, items) -> (true,_) OR (false,reason)
+        .process(method, items) -> execute internal process
     """
 
     def create_req_list(self, namespace):
         """
         Processes the action list stored in option obj.
         Works out the property the action belongs to (from namespace),
-        finds action type, & requred 'items' for said action.
+        finds action method, & requred 'items' for said action.
 
-        Returns array(dict): [{property, type, items}...]
+        Returns array(dict): [{property, method, items}...]
+        
+        Req structure similar to HTTP request:
+            property => address
+            method => req method
+            items => body
         """
         reqs = []
         for action in self.actions:
-            # Split action into property its from & type
+            # Split action into property its from & method
             # eg, i (player inv): add
             #     stat.str: ...
 
             # Search for module: filters base vs modules
             if "." in action[0]:
-                property, action_type = action[0].split(".")
+                property, action_method = action[0].split(".")
             else: 
                 property = "base"
-                action_type = action[0]
+                action_method = action[0]
             property = namespace[property]
 
             items = []
             # Collate items if present: mainly filtering base vs modules.
-            if len(action) > 1:
-                for item in action[1]:
-                    items.append(item)
+            for item in action[1]:
+                items.append(item)
+
             reqs.append({"property": property,
-                         "type": action_type,
+                         "method": action_method,
                          "items": items})
-        print(reqs)
         return reqs
 
     def mod_text_given_actions(self, text, actions, namespace):
@@ -52,7 +54,7 @@ class Option():
         reqs = self.create_req_list(namespace)
         modifications = []
         for req in reqs:
-            mod = req["property"].mod_txt(req["type"], req["items"])
+            mod = req["property"].mod_txt(req["method"], req["items"])
             text += mod
         return text
 
@@ -79,7 +81,7 @@ class Option():
         # Check all reqs fulfilled.
         failures = []
         for req in reqs:
-            response = req["property"].check_req(req["type"], req["items"])
+            response = req["property"].check_req(req["method"], req["items"])
             if not response[0]:
                 failures.append(response[1])
 
@@ -99,4 +101,4 @@ class Option():
         """
         reqs = self.create_req_list(namespace)
         for req in reqs:
-            req["property"].process(req["type"], req["items"])
+            req["property"].process(req["method"], req["items"])

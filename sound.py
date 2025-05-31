@@ -22,7 +22,7 @@ class Sound():
     def check_req(self, text, reqs):
         return (True, "")
 
-    def process(self, type, items):
+    def process(self, method, items):
         for sound in items:
             self.play(sound)
 
