@@ -1,0 +1,12 @@
+MENU
+> Contents -> CON
+> Save Game -> MENU [save]
+> Back -> BACK [back]
+
+CON
+"Contents" [contents]
+
+:1
+"Your first scene starts here! You can set options like shown below"
+> Go to bed -> 2
+> Have a coffee -> 3

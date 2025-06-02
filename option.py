@@ -1,5 +1,5 @@
 # Holy Grail
-# req["property"].FUNCTION(req["method"], req["items"])
+# namespace[action["address"]].FUNCTION(action["method"], action["body"])
 
 class Option():
     """
@@ -23,6 +23,8 @@ class Option():
             items => body
         """
         reqs = []
+        print("sel.actions=", self.actions)
+
         for action in self.actions:
             # Split action into property its from & method
             # eg, i (player inv): add
@@ -36,6 +38,10 @@ class Option():
                 action_method = action[0]
             property = namespace[property]
 
+            # Split items from conditional decisions i present
+            if "?" in action[1]:
+                item_list, conditionals = action[1].split("?")
+            else: conditionals = ""
             items = []
             # Collate items if present: mainly filtering base vs modules.
             for item in action[1]:
@@ -43,18 +49,20 @@ class Option():
 
             reqs.append({"property": property,
                          "method": action_method,
-                         "items": items})
+                         "items": items,
+                         "conditionals": conditionals})
+        print(reqs)
         return reqs
 
-    def mod_text_given_actions(self, text, actions, namespace):
+    def mod_text_given_actions(self, text, namespace):
         """
         Takes original game text & game actions and modifies text according
         to rules given by the action's module.
         """
-        reqs = self.create_req_list(namespace)
+        #reqs = self.create_req_list(namespace)
         modifications = []
-        for req in reqs:
-            mod = req["property"].mod_txt(req["method"], req["items"])
+        for action in self.actions:
+            mod = namespace[action["address"]].mod_txt(action["method"], action["body"])
             text += mod
         return text
 
@@ -65,8 +73,9 @@ class Option():
         if target.isdigit():
             target = int(target)
         self.target = target
+        # Actions = list of dicts
         self.actions = actions
-        self.text = self.mod_text_given_actions(text, actions, namespace)
+        self.text = self.mod_text_given_actions(text, namespace)
     
     def __str__(self):
         return self.text
@@ -77,11 +86,11 @@ class Option():
         all reqs to ensure they're fulfilled.
         Returns (flag:bool & msg) (explaining failure if necessary)
         """
-        reqs = self.create_req_list(namespace)  
+
         # Check all reqs fulfilled.
         failures = []
-        for req in reqs:
-            response = req["property"].check_req(req["method"], req["items"])
+        for action in self.actions:
+            response = namespace[action["address"]].check_req(action["method"], action["body"])
             if not response[0]:
                 failures.append(response[1])
 
@@ -99,6 +108,5 @@ class Option():
         The option is completed,
         necessary requirements are now "taken"/performed.
         """
-        reqs = self.create_req_list(namespace)
-        for req in reqs:
-            req["property"].process(req["method"], req["items"])
+        for action in self.actions:
+            namespace[action["address"]].process(action["method"], action["body"])

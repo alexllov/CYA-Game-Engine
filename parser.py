@@ -9,7 +9,7 @@ def parse_option(line):
         actions: game events triggered by selecting option.
     """
     # Pull off text
-    text, rest = line.split("->")
+    text, rest = line.split("->",1)
     text = text[1:].strip()
 
     # Separate Target from reqs
@@ -30,18 +30,44 @@ def parse_option(line):
         )
 
         # Process each flag
+        # [r.1.6 >3? [i.add sword]: ->17]
         for flag in flags:
             parts = flag.split(" ", 1)
             action = parts[0]
-            items = parts[1] if len(parts) > 1 else ""
+            
+            # Split up address & method for non-base actions.
+            if "." in action:
+                address, method = action.split(".")
+            else:
+                address = "base"
+                method = action
+
+            # Split of conditionals from body.
+            if len(parts) > 1:
+                if "?" in parts[1]:
+                    body, conditionals = parts[1].split("?",1)
+                else:
+                    body = parts[1]
+                    conditionals = ""
+            else:
+                body = ""
+                conditionals = ""
             # Split list of items, strip to clean, -> clean list of items.
-            items = list(
+            body = list(
                 map(
                     lambda x: x.strip(),
-                    list(items.split(","))
+                    list(body.split(","))
                 )
             )
-            actions.append((action, items))
+
+            dict = {
+                "address": address,
+                "method": method,
+                "body": body,
+                "conditionals": conditionals
+            }
+
+            actions.append(dict)
     return (text, target, actions)
 
 

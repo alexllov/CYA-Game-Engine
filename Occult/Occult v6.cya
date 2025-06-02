@@ -23,7 +23,7 @@ RULES
 > Go Downstairs -> 2 [i.need slippers, socks][s.play ./sounds/world/door.wav]
 > Scream -> 3
 > Try to eat your laptop -> 4
-> Roll a dice HIGH -> 1 [d.2d6 >6]
+> Roll a dice HIGH -> 1 [d.2d6 >6 ? [i.add sword]: ->17]
 > Roll a dice LOW -> 1 [d.1d3 <3]
 > Roll a dice -> 1 [d.1d20]
 > Put on slippers -> 5 [i.add slippers]
